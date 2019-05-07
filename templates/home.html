@@ -12,13 +12,16 @@
             //     http[s]://<domain>:<port>[/<namespace>]
 		
             var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + namespace);
-	   //event handler for conecting
-	   Socketio.on('start',function(msg)){
-		$('#start').text(msg);
+			//event handler for conecting
+		  socket.on('start',function(msg){
+				$('#start').text(msg);
 	      });
-		
-            
-        });
+		  
+		  //Event handler for the count_event
+		  socket.on('count_event', function(msg){
+			  $("#log").append('<br>'+msg);
+		  });
+    });
     </script>
 </head>
 <body>
